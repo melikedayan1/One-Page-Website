@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechGadget - Premium Electronics Store</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        :root {
+            --primary-color: #2962ff;
+            --secondary-color: #ff6d00;
+            --dark-color: #1a1a1a;
+            --light-color: #f8f9fa;
+            --gray-color: #6c757d;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        
+        .top-bar {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 8px 0;
+            font-size: 0.9rem;
+        }
+        
+        .navbar {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+        
+        .navbar-brand span {
+            color: var(--primary-color);
+        }
+        
+        .navbar-nav .nav-link {
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+        }
+        
+        .search-form {
+            position: relative;
+        }
+        
+        .search-form input {
+            border-radius: 30px;
+            padding-right: 40px;
+            border: 1px solid #ddd;
+        }
+        
+        .search-form button {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            border: none;
+            background: none;
+            color: var(--gray-color);
+        }
+        
+        .nav-icon {
+            font-size: 1.2rem;
+            color: var(--dark-color);
+            margin-right: 20px;
+            position: relative;
+        }
+        
+        .badge-notify {
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            background-color: var(--secondary-color);
+            font-size: 0.7rem;
+            padding: 0.2rem 0.4rem;
+            border-radius: 50%;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, #0b47b8, #2980b9);
+            padding: 80px 0;
+            color: white;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+            transition: all 0.3s;
+            border: none;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .product-card img {
+            height: 200px;
+            object-fit: contain;
+            padding: 20px;
+        }
+        
+        .product-card .card-body {
+            padding: 20px;
+        }
+        
+        .product-title {
+            font-weight: 500;
+            margin-bottom: 10px;
+            height: 50px;
+            overflow: hidden;
+        }
+        
+        .product-price {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .product-rating {
+            color: #ffc107;
+            margin-bottom: 15px;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-primary:hover {
+            background-color: #0043ca;
+            border-color: #0043ca;
+        }
+        
+        .btn-outline-primary {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-outline-primary:hover {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .category-card {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .category-card img {
+            height: 150px;
+            object-fit: cover;
+        }
+        
+        .category-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+        
+        .banner {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 50px 0;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .banner h2 {
+            font-weight: 700;
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .newsletter {
+            background-color: var(--light-color);
+            padding: 50px 0;
+            border-top: 1px solid #eee;
+        }
+        
+        .newsletter-form {
+            position: relative;
+        }
+        
+        .newsletter-form input {
+            border-radius: 30px;
+            padding: 15px 20px;
+            padding-right: 150px;
+            border: 1px solid #ddd;
+        }
+        
+        .newsletter-form button {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            border-radius: 30px;
+            padding: 10px 20px;
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 70px 0 0;
+        }
+        
+        footer h5 {
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        footer ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        footer ul li {
+            margin-bottom: 10px;
+        }
+        
+        footer ul li a {
+            color: rgba(255, 255, 255, 0.7);
+            transition: all 0.3s;
+        }
+        
+        footer ul li a:hover {
+            color: white;
+            text-decoration: none;
+        }
+        
+        .social-icon {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            text-align: center;
+            line-height: 40px;
+            border-radius: 50%;
+            color: white;
+            margin-right: 10px;
+            transition: all 0.3s;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+        
+        .tag {
+            display: inline-block;
+            padding: 3px 15px;
+            background-color: #e9ecef;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            color: var(--gray-color);
+            transition: all 0.3s;
+        }
+        
+        .tag:hover {
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-left">
+                    <span class="mr-3"><i class="fas fa-phone-alt mr-2"></i> (123) 456-7890</span>
+                    <span><i class="fas fa-envelope mr-2"></i> Melike.Dayan1@my-aolcc.com</span>
+                </div>
+                <div class="col-md-6 text-center text-md-right">
+                    <span class="mr-3"><i class="fas fa-truck mr-2"></i> Free shipping on orders over $50</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Tech<span>Gadget</span></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="productsDropdown" role="button" data-toggle="dropdown">
+                            Products
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="productsDropdown">
+                            <a class="dropdown-item" href="#">Smartphones</a>
+                            <a class="dropdown-item" href="#">Laptops</a>
+                            <a class="dropdown-item" href="#">Tablets</a>
+                            <a class="dropdown-item" href="#">Smart Watches</a>
+                            <a class="dropdown-item" href="#">Accessories</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Deals</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0 search-form">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search products...">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
+                <div class="ml-auto d-flex align-items-center">
+                    <a href="#" class="nav-icon">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <a href="#" class="nav-icon">
+                        <i class="fas fa-heart"></i>
+                        <span class="badge badge-notify">3</span>
+                    </a>
+                    <a href="#" class="nav-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="badge badge-notify">2</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <h1 class="display-4 font-weight-bold mb-4">Shop the Latest Tech Gadgets</h1>
+                    <p class="lead mb-4">Discover premium electronics, innovative gadgets, and cutting-edge technology products at unbeatable prices.</p>
+                    <div>
+                        <a href="#featured-products" class="btn btn-light btn-lg mr-3">Shop Now</a>
+                        <a href="#" class="btn btn-outline-light btn-lg">View Deals</a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <img src="https://images.pexels.com/photos/1029757/pexels-photo-1029757.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Electronics" class="img-fluid rounded shadow">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="mb-3">Shop by Category</h2>
+                <p class="text-muted">Browse our wide selection of top-quality electronic products</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="category-card">
+                        <img src="https://images.pexels.com/photos/1092644/pexels-photo-1092644.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img" alt="Smartphones">
+                        <div class="category-overlay">
+                            <h3>Smartphones</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="category-card">
+                        <img src="https://images.pexels.com/photos/705675/pexels-photo-705675.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img" alt="Laptops">
+                        <div class="category-overlay">
+                            <h3>Laptops</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="category-card">
+                        <img src="https://images.pexels.com/photos/1591/technology-music-sound-things.jpg?auto=compress&cs=tinysrgb&w=600" class="card-img" alt="Audio">
+                        <div class="category-overlay">
+                            <h3>Audio</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="category-card">
+                        <img src="https://images.pexels.com/photos/437037/pexels-photo-437037.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img" alt="Wearables">
+                        <div class="category-overlay">
+                            <h3>Wearables</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="category-card">
+                        <img src="https://images.pexels.com/photos/243757/pexels-photo-243757.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img" alt="Cameras">
+                        <div class="category-overlay">
+                            <h3>Cameras</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="category-card">
+                        <img src="https://images.pexels.com/photos/4158/apple-iphone-smartphone-desk.jpg?auto=compress&cs=tinysrgb&w=600" class="card-img" alt="Accessories">
+                        <div class="category-overlay">
+                            <h3>Accessories</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products Section -->
+    <section id="featured-products" class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="mb-3">Featured Products</h2>
+                <p class="text-muted">Our most popular products this month</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="product-card">
+                        <span class="badge badge-danger position-absolute m-3">New</span>
+                        <img src="https://images.pexels.com/photos/607812/pexels-photo-607812.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="iPhone">
+                        <div class="card-body">
+                            <h5 class="product-title">iPhone 13 Pro Max - 256GB</h5>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span class="text-muted ml-2">(120)</span>
+                            </div>
+                            <div class="product-price">$1,099.00</div>
+                            <button class="btn btn-primary btn-sm mr-2"><i class="fas fa-shopping-cart mr-1"></i> Add to Cart</button>
+                            <button class="btn btn-outline-secondary btn-sm"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="product-card">
+                        <span class="badge badge-warning position-absolute m-3">Sale</span>
+                        <img src="https://images.pexels.com/photos/434346/pexels-photo-434346.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="MacBook">
+                        <div class="card-body">
+                            <h5 class="product-title">MacBook Pro 14" M1 Pro Chip</h5>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span class="text-muted ml-2">(98)</span>
+                            </div>
+                            <div class="product-price">$1,799.00</div>
+                            <button class="btn btn-primary btn-sm mr-2"><i class="fas fa-shopping-cart mr-1"></i> Add to Cart</button>
+                            <button class="btn btn-outline-secondary btn-sm"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="product-card">
+                        <img src="https://images.pexels.com/photos/577769/pexels-photo-577769.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="Headphones">
+                        <div class="card-body">
+                            <h5 class="product-title">Sony WH-1000XM4 Wireless Headphones</h5>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span class="text-muted ml-2">(210)</span>
+                            </div>
+                            <div class="product-price">$349.99</div>
+                            <button class="btn btn-primary btn-sm mr-2"><i class="fas fa-shopping-cart mr-1"></i> Add to Cart</button>
+                            <button class="btn btn-outline-secondary btn-sm"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="product-card">
+                        <img src="https://images.pexels.com/photos/267394/pexels-photo-267394.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="Apple Watch">
+                        <div class="card-body">
+                            <h5 class="product-title">Apple Watch Series 7 GPS</h5>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <span class="text-muted ml-2">(78)</span>
+                            </div>
+                            <div class="product-price">$399.00</div>
+                            <button class="btn btn-primary btn-sm mr-2"><i class="fas fa-shopping-cart mr-1"></i> Add to Cart</button>
+                            <button class="btn btn-outline-secondary btn-sm"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <a href="#" class="btn btn-outline-primary btn-lg">View All Products</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Banner Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="banner">
+                <div class="row align-items-center">
+                    <div class="col-lg-7 px-5 py-4">
+                        <h2 class="mb-3">Summer Sale: Up to 40% Off!</h2>
+                        <p class="lead mb-4">Limited time offer on selected electronics. Shop now and save big on premium gadgets and accessories.</p>
+                        <a href="#" class="btn btn-light btn-lg">Shop the Sale</a>
+                    </div>
+                    <div class="col-lg-5 d-none d-lg-block">
+                        <img src="https://images.pexels.com/photos/3944425/pexels-photo-3944425.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Sale" class="img-fluid rounded">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- New Arrivals Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="mb-3">New Arrivals</h2>
+                <p class="text-muted">Check out our latest products</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="product-card">
+                        <span class="badge badge-danger position-absolute m-3">New</span>
+                        <img src="https://images.pexels.com/photos/1334597/pexels-photo-1334597.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="iPad">
+                        <div class="card-body">
+                            <h5 class="product-title">iPad Air 5th Generation</h5>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <span class="text-muted ml-2">(42)</span>
+                            </div>
+                            <div class="product-price">$599.00</div>
+                            <button class="btn btn-primary btn-sm mr-2"><i class="fas fa-shopping-cart mr-1"></i> Add to Cart</button>
+                            <button class="btn btn-outline-secondary btn-sm"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="product-card">
+                        <span class="badge badge-danger position-absolute m-3">New</span>
+                        <img src="https://images.pexels.com/photos/1706694/pexels-photo-1706694.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="Speakers">
+                        <div class="card-body">
+                            <h5 class="product-title">Bose SoundLink Revolve+ II</h5>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span class="text-muted ml-2">(67)</span>
+                            </div>
+                            <div class="product-price">$329.00</div>
+                            <button class="btn btn-primary btn-sm mr-2"><i class="fas fa-shopping-cart mr-1"></i> Add to Cart</button>
+                            <button class="btn btn-outline-secondary btn-sm"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="product-card">
+                        <span class="badge badge-danger position-absolute m-3">New</span>
+                        <img src="https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="Camera">
+                        <div class="card-body">
+                            <h5 class="product-title">Sony Alpha a7 III Mirrorless Camera</h5>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span class="text-muted ml-2">(91)</span>
+                            </div>
+                            <div class="product-price">$1,999.00</div>
+                            <button class="btn btn-primary btn-sm mr-2"><i class="fas fa-shopping-cart mr-1"></i> Add to Cart</button>
+                            <button class="btn btn-outline-secondary btn-sm"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="product-card">
+                        <span class="badge badge-danger position-absolute m-3">New</span>
+                        <img src="https://images.pexels.com/photos/3825517/pexels-photo-3825517.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="Earbuds">
+                        <div class="card-body">
+                            <h5 class="product-title">AirPods Pro with MagSafe Charging Case</h5>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span class="text-muted ml-2">(156)</span>
+                            </div>
+                            <div class="product-price">$249.00</div>
+                            <button class="btn btn-primary btn-sm mr-2"><i class="fas fa-shopping-cart mr-1"></i> Add to Cart</button>
+                            <button class="btn btn-outline-secondary btn-sm"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                    <div class="feature-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h4>Free Shipping</h4>
+                    <p class="text-muted">On orders over $50</p>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                    <div class="feature-icon">
+                        <i class="fas fa-undo-alt"></i>
+                    </div>
+                    <h4>30-Day Returns</h4>
+                    <p class="text-muted">Hassle-free returns</p>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <div class="feature-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h4>Secure Payments</h4>
+                    <p class="text-muted">100% secure checkout</p>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h4>24/7 Support</h4>
+                    <p class="text-muted">Expert assistance</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 text-center">
+                    <h3 class="mb-3">Subscribe to Our Newsletter</h3>
+                    <p class="text-muted mb-4">Stay updated with the latest products, exclusive offers, and tech news.</p>
+                    <form class="newsletter-form">
+                        <div class="input-group mb-3">
+                            <input type="email" class="form-control" placeholder="Enter your email address">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button">Subscribe</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                    <h5>TechGadget</h5>
+                    <p class="text-muted mb-4">Your one-stop shop for premium electronics, innovative gadgets, and tech accessories.</p>
+                    <div class="social-icons mb-4">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                    <h5>Shop</h5>
+                    <ul>
+                        <li><a href="#">Smartphones</a></li>
+                        <li><a href="#">Laptops & Computers</a></li>
+                        <li><a href="#">Audio & Headphones</a></li>
+                        <li><a href="#">Wearable Technology</a></li>
+                        <li><a href="#">Cameras</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                    <h5>Customer Service</h5>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Return Policy</a></li>
+                        <li><a href="#">Shipping Information</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Order Tracking</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5>Information</h5>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                    <h5 class="mt-4">Payment Methods</h5>
+                    <div>
+                        <i class="fab fa-cc-visa fa-2x mr-2"></i>
+                        <i class="fab fa-cc-mastercard fa-2x mr-2"></i>
+                        <i class="fab fa-cc-amex fa-2x mr-2"></i>
+                        <i class="fab fa-cc-paypal fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright text-center">
+            <div class="container">
+                <p class="mb-0">© 2023 TechGadget. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+    <!-- Font Awesome for icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <!-- Custom JS -->
+    <script src="js/script.js"></script>
+</body>
+</html> 
